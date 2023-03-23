@@ -33,7 +33,7 @@ public class HelloWorldServlet extends HttpServlet {
 ```
 3. Create a new JSP file in the src/main/webapp directory called index.jsp with the following code:
 
-'''
+```
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,5 +43,40 @@ public class HelloWorldServlet extends HttpServlet {
   <h1>Hello, World!</h1>
 </body>
 </html>
+```
+4. Create a new web.xml file in the src/main/webapp/WEB-INF directory with the following code:
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 
-'''
+  <display-name>Hello World</display-name>
+  
+  <servlet>
+    <servlet-name>HelloWorldServlet</servlet-name>
+    <servlet-class>HelloWorldServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>HelloWorldServlet</servlet-name>
+    <url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+</web-app>
+
+```
+5. Build the project using Maven by running the following command in the project directory:
+```
+mvn package
+
+```
+
+6. The above command should create a target directory inside the project directory with the hello-world-1.0-SNAPSHOT.war file. Deploy this WAR file to Tomcat by copying it to the webapps directory of your Tomcat installation.
+7. Start Tomcat by running the bin/startup.bat (or bin/startup.sh) script in the Tomcat installation directory.
+8. Access the web application by opening a web browser and navigating to http://localhost:8080/hello-world-1.0-SNAPSHOT/ (assuming that Tomcat is running on port 8080). You should see the "Hello, World!" message displayed on the page.
